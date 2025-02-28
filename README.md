@@ -580,3 +580,58 @@ This instruction loads a 32-bit immediate value into a register.
 - Developed and compiled a basic C program using RISC-V GCC with `-O1` and `-Ofast` optimization levels.
 - Created and examined object dumps for both optimization settings.
 - Uploaded waveform snapshots, simulation outcomes, and compiled binaries to the GitHub repository.
+
+- ## Task 5
+# 🚀 Multi-Mode Counter Using ESP8266 & VSD Squadron Mini  
+**A Smart Counter Controlled via Blynk Web Dashboard**  
+
+## 📌 Project Overview  
+This project implements a **4-bit multi-mode counter** using an **ESP8266 NodeMCU** and **VSD Squadron Mini (CH32V0xx)**. The counting mode is controlled via **Blynk Web Dashboard**, and the output is displayed using **LEDs connected to PC0-PC3**.  
+
+## 🔥 Features  
+✅ **4 Counting Modes:**  
+- **00 → Up Counter** (0-15)  
+- **01 → Down Counter** (15-0)  
+- **10 → Ring Counter** (Shifting '1')  
+- **11 → BCD Counter** (0-9 in BCD)  
+
+✅ **Remote Control via Blynk**  
+✅ **ESP8266 & VSD Integration**  
+✅ **Real-time LED Display (PC0-PC3)**  
+
+## 🛠️ Hardware Requirements  
+- **ESP8266 NodeMCU**  
+- **VSD Squadron Mini (CH32V0xx)**  
+- **4 LEDs (PC0-PC3)**  
+- **Resistors (330Ω)**  
+- **Jumper Wires**  
+- **Power Supply (5V)**  
+
+## 🔌 Circuit Connections  
+- **ESP8266 → VSD Squadron Mini:**  
+  - **D2 → PC5 (Mode Select 1)**  
+  - **D3 → PC6 (Mode Select 2)**  
+- **VSD Squadron Mini → LEDs:**  
+  - **PC0, PC1, PC2, PC3 → LED Indicators**  
+
+## 📜 Code  
+The full Arduino code is available in [`code/multi_mode_counter.ino`](code/multi_mode_counter.ino).  
+
+## 📊 Results  
+| **Mode**       | **LED Output (PC0-PC3)** |  
+|---------------|----------------------|  
+| Up Counter    | Counts 0000 → 1111 |  
+| Down Counter  | Counts 1111 → 0000 |  
+| Ring Counter  | Single '1' shifts cyclically |  
+| BCD Counter   | Counts 0000 → 1001 (0-9) |  
+
+## 🌍 Blynk Web Dashboard  
+- **V0** → PC5 (Mode Select 1)  
+- **V1** → PC6 (Mode Select 2)  
+
+## 📌 Future Enhancements  
+🚀 **OLED Display for Count Output**  
+🚀 **Mobile App Integration**  
+🚀 **Expand to 8-bit Counting**  
+
+## 📁 Repository Structure  
