@@ -1,0 +1,71 @@
+#include <Arduino.h>
+
+#define BIT_0 PC0  // LSB
+#define BIT_1 PC1  
+#define BIT_2 PC2  
+#define BIT_3 PC3  // MSB
+
+#define MODE_0 PC5  // Mode Select Bit 0
+#define MODE_1 PC6  // Mode Select Bit 1
+
+void setup() {
+    pinMode(BIT_0, OUTPUT);
+    pinMode(BIT_1, OUTPUT);
+    pinMode(BIT_2, OUTPUT);
+    pinMode(BIT_3, OUTPUT);
+
+    pinMode(MODE_0, INPUT_PULLUP);  // Mode select input
+    pinMode(MODE_1, INPUT_PULLUP);  // Mode select input
+}
+
+void loop() {
+    int mode = (digitalRead(MODE_1) << 1) | digitalRead(MODE_0);
+
+    switch (mode) {
+        case 0b00: upCounter(); break;
+        case 0b01: downCounter(); break;
+        case 0b10: ringCounter(); break;
+        case 0b11: bcdCounter(); break;
+    }
+}
+
+// 4-bit Up Counter (0000 to 1111)
+void upCounter() {
+    for (int count = 0; count < 16; count++) {
+        setOutput(count);
+        delay(500);
+    }
+}
+
+// 4-bit Down Counter (1111 to 0000)
+void downCounter() {
+    for (int count = 15; count >= 0; count--) {
+        setOutput(count);
+        delay(500);
+    }
+}
+
+// 4-bit Ring Counter (1000 → 0100 → 0010 → 0001 → repeat)
+void ringCounter() {
+    int ringPattern[4] = {0b0001, 0b0010, 0b0100, 0b1000};
+    for (int i = 0; i < 4; i++) {
+        setOutput(ringPattern[i]);
+        delay(500);
+    }
+}
+
+// 4-bit BCD Counter (0000 to 1001)
+void bcdCounter() {
+    for (int count = 0; count < 10; count++) {
+        setOutput(count);
+        delay(500);
+    }
+}
+
+// Function to set LEDs according to a binary value
+void setOutput(int value) {
+    digitalWrite(BIT_0, bitRead(value, 0));
+    digitalWrite(BIT_1, bitRead(value, 1));
+    digitalWrite(BIT_2, bitRead(value, 2));
+    digitalWrite(BIT_3, bitRead(value, 3));
+}
