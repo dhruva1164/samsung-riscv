@@ -1,0 +1,59 @@
+#define BLYNK_TEMPLATE_NAME "Multi Mode Counter"
+#define BLYNK_AUTH_TOKEN "Nx5yWrQJHURVm28IJ9TMJ9kvV6zKZEAH"
+#define BLYNK_TEMPLATE_ID "TMPL3eeJNe-y1" 
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+
+int Control1 = D1; // First control output
+int Control2 = D2; // Second control output
+
+char auth[] = "Nx5yWrQJHURVm28IJ9TMJ9kvV6zKZEAH"; // Blynk Token
+char ssid[] = "Ranga"; // Wi-Fi SSID
+char pass[] = "9916337761"; // Wi-Fi Password
+
+// Blynk Control: Switch 1 (V0) controls Control1
+BLYNK_WRITE(V0) {
+  digitalWrite(Control1, param.asInt());
+}
+
+// Blynk Control: Switch 2 (V1) controls Control2
+BLYNK_WRITE(V1) {
+  digitalWrite(Control2, param.asInt());
+}
+
+void setup() {
+  pinMode(Control1, OUTPUT);
+  pinMode(Control2, OUTPUT);
+  
+  Serial.begin(115200);
+  Blynk.begin(auth, ssid, pass);
+}
+
+void loop() {
+  Blynk.run();
+
+  if (Serial.available()) { // Read Serial Input
+    char data_received = Serial.read();
+
+    if (data_received == '1') {
+      digitalWrite(Control1, HIGH);
+      Blynk.virtualWrite(V0, 1);
+      Serial.println("Control1 turned ON");
+    }
+    else if (data_received == '2') {
+      digitalWrite(Control1, LOW);
+      Blynk.virtualWrite(V0, 0);
+      Serial.println("Control1 turned OFF");
+    }
+    else if (data_received == '3') {
+      digitalWrite(Control2, HIGH);
+      Blynk.virtualWrite(V1, 1);
+      Serial.println("Control2 turned ON");
+    }
+    else if (data_received == '4') {
+      digitalWrite(Control2, LOW);
+      Blynk.virtualWrite(V1, 0);
+      Serial.println("Control2 turned OFF");
+    }
+  }
+}
