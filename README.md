@@ -633,5 +633,3 @@ The full Arduino code is available in [`code/multi_mode_counter.ino`](code/multi
 🚀 **OLED Display for Count Output**  
 🚀 **Mobile App Integration**  
 🚀 **Expand to 8-bit Counting**  
-
-## 📁 Repository Structure  
