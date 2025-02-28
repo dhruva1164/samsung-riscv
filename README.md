@@ -570,3 +570,13 @@ This instruction loads a 32-bit immediate value into a register.
 ## ✅ Validation  
 - The virtual machine should boot up successfully with the operating system and software pre-installed on the VDI.  
 - Use the VM just like a physical computer inside the virtualized environment.  
+# Task 4: RISC-V Core Functional Simulation
+
+## Progress Overview
+- Retrieved and configured the Verilog netlist and testbench files.
+- Established a simulation setup utilizing `iverilog` and `gtkwave`.
+- Conducted functional simulations to validate the RISC-V Core behavior.
+- Captured and reviewed waveform outputs to confirm proper core operation.
+- Developed and compiled a basic C program using RISC-V GCC with `-O1` and `-Ofast` optimization levels.
+- Created and examined object dumps for both optimization settings.
+- Uploaded waveform snapshots, simulation outcomes, and compiled binaries to the GitHub repository.
