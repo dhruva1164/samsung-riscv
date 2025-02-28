@@ -48,8 +48,6 @@ The counter operates in **four different modes** depending on the control inputs
   - **PC2 → LED3**
   - **PC3 → LED4**
 
-### **Circuit Diagram**
-![Circuit Diagram](Circuit_Diagram.png)
 
 ---
 
